@@ -7,7 +7,6 @@
   SECRETS_SCAN_OMIT_PATHS = ".next/cache/**,scripts/**,**/*.md"
   NODE_VERSION = "18"
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+# Use Netlify's Next.js plugin for proper routing
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

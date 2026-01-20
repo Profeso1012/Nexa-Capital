@@ -45,13 +45,13 @@ npm run dev
 ```
 
 5. **Access the application:**
-- Frontend: `http://localhost:3000`
-- Admin Panel: `http://localhost:3000/admin`
+- Frontend: `http://localhost:3000` (local) or your deployed URL
+- Admin Panel: `/admin` route
 
 ### Admin Login
 ```
-Email: admin@nexacapital.com
-Password: admin123
+Email: <YOUR_ADMIN_EMAIL>
+Password: <YOUR_ADMIN_PASSWORD>
 ```
 
 ## 📁 Project Structure

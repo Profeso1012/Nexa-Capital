@@ -2,11 +2,11 @@
 
 ## 🎯 Admin Login Credentials
 
-**Email:** `admin@nexacapital.com`  
-**Password:** `admin123`
+**Email:** `<YOUR_ADMIN_EMAIL>`  
+**Password:** `<YOUR_ADMIN_PASSWORD>`
 
 **How to Login:**
-1. Go to `http://localhost:3000/login`
+1. Go to your deployed URL `/login` (e.g., `https://your-site.netlify.app/login`)
 2. Enter the admin credentials above
 3. Click "Login"
 4. You'll be automatically redirected to `/admin` (the admin panel)
@@ -286,9 +286,9 @@
    ```
 
 2. **Login as admin:**
-   - Go to `http://localhost:3000/login`
-   - Email: `admin@nexacapital.com`
-   - Password: `admin123`
+   - Go to your deployed URL `/login`
+   - Email: `<YOUR_ADMIN_EMAIL>`
+   - Password: `<YOUR_ADMIN_PASSWORD>`
 
 3. **You'll be redirected to `/admin`**
 
@@ -324,7 +324,7 @@
 
 **Can't login as admin?**
 - Make sure you ran `npm run db:seed`
-- Check credentials: `admin@nexacapital.com` / `admin123`
+- Check credentials match your environment variables (ADMIN_EMAIL / ADMIN_PASSWORD)
 
 **Not seeing transactions?**
 - Make sure users have submitted transactions

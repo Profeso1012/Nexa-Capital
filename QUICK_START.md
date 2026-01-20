@@ -16,9 +16,9 @@ Your Nexa Capital platform is **100% functional** with:
 ## 🎯 Admin Access
 
 **Login as Admin:**
-1. Go to `http://localhost:3000/login`
-2. Email: `admin@nexacapital.com`
-3. Password: `admin123`
+1. Go to `/login` on your site
+2. Email: Use your ADMIN_EMAIL environment variable
+3. Password: Use your ADMIN_PASSWORD environment variable
 4. You'll be redirected to `/admin`
 
 **Admin Can:**
@@ -36,7 +36,7 @@ Your Nexa Capital platform is **100% functional** with:
 
 ### 1. Register a New User
 ```
-1. Go to http://localhost:3000/register
+1. Go to /register on your site
 2. Fill in the form
 3. Click Register
 4. You'll be redirected to dashboard
@@ -208,13 +208,13 @@ Need to connect:
 7. ✅ Navbar → Changes based on login state
 
 **Admin Credentials:**
-- Email: `admin@nexacapital.com`
-- Password: `admin123`
+- Email: Set via ADMIN_EMAIL environment variable
+- Password: Set via ADMIN_PASSWORD environment variable
 
 **Start Testing:**
 ```bash
 npm run dev
-# Then go to http://localhost:3000
+# Then go to http://localhost:3000 (local development)
 ```
 
 Your platform is functional and ready for testing! 🚀

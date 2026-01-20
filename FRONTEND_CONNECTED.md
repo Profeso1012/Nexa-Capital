@@ -87,7 +87,7 @@ You were absolutely right - the frontend was showing fake/dummy data. I've now c
 
 ### 1. Register a New User:
 ```
-1. Go to http://localhost:3000/register
+1. Go to /register on your site
 2. Fill in the form
 3. Click Register
 4. You'll be redirected to dashboard with YOUR data
@@ -104,8 +104,8 @@ You were absolutely right - the frontend was showing fake/dummy data. I've now c
 
 ### 3. Login as Admin:
 ```
-Email: admin@nexacapital.com
-Password: admin123
+Email: <YOUR_ADMIN_EMAIL>
+Password: <YOUR_ADMIN_PASSWORD>
 You'll be redirected to /admin panel
 ```
 

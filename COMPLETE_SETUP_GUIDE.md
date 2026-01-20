@@ -55,10 +55,10 @@ npm install
 ### 2. Environment Setup
 Your `.env` file is already configured with:
 ```env
-MONGODB_URI="mongodb+srv://Profeso1012:Ez2bduu12b@delux-cluster0.zl7dc.mongodb.net/?appName=Delux-Cluster0"
-JWT_SECRET="your-super-secret-jwt-key-change-this-in-production"
-ADMIN_EMAIL="admin@nexacapital.com"
-ADMIN_PASSWORD="admin123"
+MONGODB_URI="<YOUR_MONGODB_CONNECTION_STRING>"
+JWT_SECRET="<YOUR_RANDOM_SECRET_KEY>"
+ADMIN_EMAIL="<YOUR_ADMIN_EMAIL>"
+ADMIN_PASSWORD="<YOUR_ADMIN_PASSWORD>"
 ```
 
 ### 3. Database is Ready
@@ -191,14 +191,14 @@ All API routes are documented in `API_DOCUMENTATION.md`
 
 **Example: Login**
 ```bash
-curl -X POST http://localhost:3000/api/auth/login \
+curl -X POST https://your-site.netlify.app/api/auth/login \
   -H "Content-Type: application/json" \
-  -d '{"email":"admin@nexacapital.com","password":"admin123"}'
+  -d '{"email":"<YOUR_ADMIN_EMAIL>","password":"<YOUR_ADMIN_PASSWORD>"}'
 ```
 
 **Example: Get User Profile (with token)**
 ```bash
-curl http://localhost:3000/api/auth/me \
+curl https://your-site.netlify.app/api/auth/me \
   -H "Authorization: Bearer YOUR_TOKEN_HERE"
 ```
 

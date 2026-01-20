@@ -193,9 +193,9 @@ npm run db:seed      # Seed initial data
 
 ```env
 MONGODB_URI=mongodb+srv://...
-JWT_SECRET=your-secret-key
-ADMIN_EMAIL=admin@nexacapital.com
-ADMIN_PASSWORD=admin123
+JWT_SECRET=your-secret-key...
+ADMIN_EMAIL=
+ADMIN_PASSWORD=
 ```
 
 ## 🚀 Deployment

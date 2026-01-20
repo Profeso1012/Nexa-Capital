@@ -29,8 +29,13 @@ async function seedData() {
     console.log('\n👤 Creating admin user...');
     const users = db.collection('users');
     
-    const adminEmail = process.env.ADMIN_EMAIL || 'admin@nexacapital.com';
-    const adminPassword = process.env.ADMIN_PASSWORD || 'admin123';
+    const adminEmail = process.env.ADMIN_EMAIL;
+    const adminPassword = process.env.ADMIN_PASSWORD;
+    
+    if (!adminEmail || !adminPassword) {
+      console.error('❌ ADMIN_EMAIL and ADMIN_PASSWORD must be set in .env file');
+      process.exit(1);
+    }
     
     const existingAdmin = await users.findOne({ email: adminEmail });
     
@@ -68,9 +73,7 @@ async function seedData() {
         updatedAt: new Date()
       });
       
-      console.log('  ✅ Admin user created');
-      console.log(`  📧 Email: ${adminEmail}`);
-      console.log(`  🔑 Password: ${adminPassword}`);
+      console.log('  ✅ Admin user created successfully');
     }
     
     // Create investment plans
@@ -140,10 +143,8 @@ async function seedData() {
     
     console.log('\n🎉 Seed data completed successfully!');
     console.log('\n📝 Next steps:');
-    console.log('  1. Login as admin:');
-    console.log(`     Email: ${adminEmail}`);
-    console.log(`     Password: ${adminPassword}`);
-    console.log('  2. Access admin panel at: http://localhost:3000/admin');
+    console.log('  1. Login as admin using your ADMIN_EMAIL and ADMIN_PASSWORD from .env');
+    console.log('  2. Access admin panel at: /admin');
     console.log('  3. Start creating users and managing transactions!');
     
   } catch (error) {

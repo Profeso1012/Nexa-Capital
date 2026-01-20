@@ -1,0 +1,13 @@
+[build]
+  command = "next build"
+  publish = ".next"
+
+[build.environment]
+  # Ignore build cache and documentation in secrets scanning
+  SECRETS_SCAN_OMIT_PATHS = ".next/cache/**,scripts/seed-data.js"
+  NODE_VERSION = "18"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

@@ -28,3 +28,5 @@ next-env.d.ts
 /lib/generated/prisma
 
 /MD files
+
+/scripts

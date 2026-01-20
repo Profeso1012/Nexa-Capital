@@ -19,7 +19,7 @@ Make sure these are set in Netlify:
 - `ADMIN_EMAIL` - Your admin email
 - `ADMIN_PASSWORD` - Your admin password
 - `DAILY_EARNING_HOUR` - Hour for daily earnings (e.g., 0)
-- `DEFAULT_REFERRAL_CODE` - Default referral code (e.g., NEXA001)
+- `DEFAULT_REFERRAL_CODE` - Default referral code
 - `REFERRAL_BONUS_PERCENTAGE` - Referral bonus percentage (e.g., 5)
 
 ## Next Steps

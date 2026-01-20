@@ -27,6 +27,9 @@ yarn-error.log*
 next-env.d.ts
 /lib/generated/prisma
 
+# Documentation with potential secrets
 /MD files
+*.md
+!README.md
 
 /scripts

@@ -189,15 +189,7 @@ npm run db:seed      # Seed initial data
 ## 📝 Environment Variables
 
 ```env
-MONGODB_URI=your-mongodb-connection-string
-JWT_SECRET=your-secret-key
-NEXTAUTH_SECRET=your-nextauth-secret
-NEXTAUTH_URL=your-deployed-url
-ADMIN_EMAIL=your-admin-email
-ADMIN_PASSWORD=your-admin-password
-DAILY_EARNING_HOUR=0
-DEFAULT_REFERRAL_CODE=NEXA001
-REFERRAL_BONUS_PERCENTAGE=5
+
 ```
 
 ## 🚀 Deployment

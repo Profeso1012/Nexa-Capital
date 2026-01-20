@@ -1,0 +1,164 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(uuid())
+  username      String    @unique
+  email         String    @unique
+  password      String
+  country       String
+  countryCode   String
+  phone         String
+  referralCode  String    @unique
+  referredBy    String?
+  isAdmin       Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  wallet        Wallet?
+  transactions  Transaction[]
+  investments   Investment[]
+  referrals     Referral[]  @relation("ReferrerReferrals")
+  referredFrom  Referral?   @relation("ReferredUserReferral")
+
+  @@index([email])
+  @@index([username])
+  @@index([referralCode])
+}
+
+model Wallet {
+  id                  String    @id @default(uuid())
+  userId              String    @unique
+  balance             Decimal   @default(0) @db.Decimal(10, 2)
+  pendingDeposits     Decimal   @default(0) @db.Decimal(10, 2)
+  pendingWithdrawals  Decimal   @default(0) @db.Decimal(10, 2)
+  totalEarnings       Decimal   @default(0) @db.Decimal(10, 2)
+  totalDeposits       Decimal   @default(0) @db.Decimal(10, 2)
+  totalWithdrawals    Decimal   @default(0) @db.Decimal(10, 2)
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+
+  user                User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+enum TransactionType {
+  DEPOSIT
+  WITHDRAWAL
+  EARNING
+  REFERRAL
+  INVESTMENT
+}
+
+enum TransactionStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  CANCELLED
+}
+
+enum PaymentMethod {
+  BITCOIN
+  ETHEREUM
+  BANK_TRANSFER
+  CREDIT_CARD
+  SYSTEM
+}
+
+model Transaction {
+  id              String            @id @default(uuid())
+  userId          String
+  type            TransactionType
+  amount          Decimal           @db.Decimal(10, 2)
+  method          PaymentMethod
+  status          TransactionStatus @default(PENDING)
+  reference       String?
+  walletAddress   String?
+  description     String?
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  user            User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([status])
+  @@index([type])
+  @@index([createdAt])
+}
+
+model InvestmentPlan {
+  id          String    @id @default(uuid())
+  name        String    @unique
+  badge       String?
+  description String
+  dailyRate   Decimal   @db.Decimal(5, 2)
+  minAmount   Decimal   @db.Decimal(10, 2)
+  maxAmount   Decimal   @db.Decimal(10, 2)
+  duration    Int       // in days
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  investments Investment[]
+
+  @@index([name])
+}
+
+enum InvestmentStatus {
+  ACTIVE
+  COMPLETED
+  CANCELLED
+}
+
+model Investment {
+  id              String            @id @default(uuid())
+  userId          String
+  planId          String
+  amount          Decimal           @db.Decimal(10, 2)
+  dailyRate       Decimal           @db.Decimal(5, 2)
+  totalEarned     Decimal           @default(0) @db.Decimal(10, 2)
+  status          InvestmentStatus  @default(ACTIVE)
+  startDate       DateTime          @default(now())
+  endDate         DateTime?
+  lastEarningDate DateTime?
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  user            User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  plan            InvestmentPlan    @relation(fields: [planId], references: [id])
+
+  @@index([userId])
+  @@index([status])
+  @@index([startDate])
+}
+
+enum ReferralStatus {
+  PENDING
+  ACTIVE
+}
+
+model Referral {
+  id              String          @id @default(uuid())
+  referrerId      String
+  referredUserId  String          @unique
+  bonusEarned     Decimal         @default(0) @db.Decimal(10, 2)
+  status          ReferralStatus  @default(PENDING)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  referrer        User            @relation("ReferrerReferrals", fields: [referrerId], references: [id], onDelete: Cascade)
+  referredUser    User            @relation("ReferredUserReferral", fields: [referredUserId], references: [id], onDelete: Cascade)
+
+  @@index([referrerId])
+  @@index([referredUserId])
+}
